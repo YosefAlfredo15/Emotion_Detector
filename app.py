@@ -1,12 +1,13 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
-from tensorflow.keras.models import load_model
+import h5py  # Import h5py untuk memuat model
 
 # Function to load the model
 @st.cache
 def load_emotion_model():
-    model = load_model("emotion_model.h5")  # Replace "your_model_path.h5" with the path to your trained model
+    with h5py.File("emotion_model.h5", "r") as f:  # Ganti "your_model_path.h5" dengan path ke model Anda
+        model = f.get("model_weights").value  # Sesuaikan dengan nama dataset model Anda dalam file .h5
     return model
 
 # Function to preprocess the image
