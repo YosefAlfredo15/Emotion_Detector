@@ -12,15 +12,13 @@ def load_model():
     return model
 
 def predict_emotion(model, img):
-    img_array = np.array(img.resize((48, 48)).convert('L'))  # Convert ke skala abu-abu dan resize gambar
+    img_array = np.array(img.resize((48, 48)))  # Resize gambar
     img_array = np.expand_dims(img_array, axis=0)
-    img_array = np.expand_dims(img_array, axis=-1)  # Tambahkan dimensi kedua dan keempat
     img_array = img_array / 255.0  # Normalisasi
     prediction = model.predict(img_array)
     emotion_labels = ['Angry', 'Happy', 'Sad']
     predicted_class = np.argmax(prediction)
     return emotion_labels[predicted_class]
-
 
 def display_image_with_prediction(model, img):
     resized_img = img.resize((224, 224), Image.LANCZOS)
