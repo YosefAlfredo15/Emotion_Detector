@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 # Function to load the model
 @st.cache
 def load_emotion_model():
-    model = load_model("your_model_path.h5")  # Replace "your_model_path.h5" with the path to your trained model
+    model = load_model("emotion_model.h5")  # Replace "your_model_path.h5" with the path to your trained model
     return model
 
 # Function to preprocess the image
